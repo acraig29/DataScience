@@ -1,0 +1,56 @@
+
+
+
+###
+change directory to where sql file is stored
+
+ ### run a sql file with instructions to update a northwind table
+ psql -U postgres -f regions.sql
+ 
+ ### connect to northwind database 
+ psql -U postgres northwind
+
+ 
+ ###run select statement  to check northwind tables
+ SELECT * FROM regions;
+ 
+ 
+ 
+ -----------------------
+ 
+ \? provides full list of all psql commands\
+ \h provides full lost of all sql commands
+ 
+ \l list all databases
+ 
+ basic command line postgres commands:
+\dt
+
+display all tables
+
+\d cities
+
+displays definition of one table in psql
+
+\c dbname
+
+connect to the database dbname
+
+\timing
+
+switches time measurement of queries on and off
+
+\?
+
+shows all psql commands
+
+\h
+
+shows all SQL commands
+
+\h SELECT
+
+shows help for the SELECT command
+
+ 
+ 

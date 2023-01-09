@@ -1,0 +1,62 @@
+
+#build new container
+sudo docker build -t tweet_test1 .
+
+
+#run new container
+sudo docker run -it -v /home/ubuntu/week6/tweet_collector/:/app/  tweet_test1
+
+
+
+Pipeline  build:
+
+place the yml file in the week6 top level folder
+docker-compose.yml
+
+-also need to create a ETL folder in week6
+
+
+#build container pipline:
+sudo   docker-compose  build -t spiced_pipeline .
+sudo docker-compose -f   docker-compose.yml build
+sudo docker-compose -f   docker-compose.yml build spiced_pipeline2 .
+######################################################################################
+
+#build the docker compose pipeline
+sudo docker compose build
+
+#run all docker compose piplines
+sudo docker compose up -d
+
+#view all docker compose pipelines
+sudo docker compose ps -a
+
+
+######
+##sudo  docker compose start week6-tweet_collector-1 
+
+
+##inspect mongodb
+sudo docker compose exec mongodb mongosh
+
+docker exec -it mymon mongosh
+
+]#####show all active mongo databases
+show dbs
+
+
+
+#####clear out existing docker compose volumes:
+sudo  docker compose down --rmi all --volumes
+
+
+
+
+
+
+
+
+
+ new container
+sudo docker run -it -v /home/ubuntu/week6/tweet_collector/:/app/  spiced_pipeline2
+#run

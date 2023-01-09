@@ -1,0 +1,94 @@
+h1{color:aqua;
+    font-size:40px}
+
+    #borderDemo {
+        border: 5px solid #0B6904;
+        background-color:black;
+        color: rgb(31, 135, 0);
+        }
+    
+    body{
+        width:80%;
+        margin:auto;
+        padding:30px;
+        text-align:center;
+        font-size: small;
+        font-family:Lucida;
+        background-color: deeppink;
+        
+        background-image:url("Matrix_Wallpaper.jpg");
+
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+    
+    
+    input,button{
+        background-color: black;
+        color: rgb(31, 135, 0);
+        padding: 10px;
+        font-size: Lucida;
+        font-family: Lucida;
+        outline-color:rgb(31, 135, 0);
+    }
+    
+    button{color:rgb(31, 135, 0);
+    font-style: italic;
+    font-size: 20px;
+    transition: all 3s;}
+    
+    button:hover{color: rgb(31, 135, 0);}
+    
+    
+    input[type=number]{width:80px}
+    
+    ul{
+        display: inline-block;
+        text-align: left;
+        }
+    
+    .movies li{padding: 10px;} /*class selector*/
+    
+    .movies li:nth-child(odd){background-color: rgb(31, 135, 0);}  /*:nth-child() is pseudo selector*/
+    .movies li:nth-child(even){background-color: rgb(31, 135, 0);}
+    
+    a{color: rgb(31, 135, 0);
+    transition: all 3s;
+    font-size: 20px;
+    font-style: italic;}
+    
+
+    img{height: 30vh;
+        transition: all 2s;}
+    
+    img:hover{
+        filter: grayscale();
+        /*filter:blur(2px)*/;
+        filter: brightness(20%);
+        background-color: #ffffff;
+        color: hsl(125, 65%, 57%);
+        transform: rotate(5deg) scale(1.2);}
+    
+    
+    p,h2{color: rgb(31, 135, 0);
+    color: #ffffff;
+    font-size: 20px;}
+
+
+
+    input[type="text"]#subdomaintwo{
+        
+        color: red;
+        text-align: right;
+        width: 75px;
+        border: 1px solid gray;
+        border-left: 0px;
+        margin: 0 0 0 -7px;
+        background: white;
+    }
+    input[type="text"]#subdomain{
+       
+        border: 1px solid gray;
+        border-right: 0px;
+        outline: none;
+    }

@@ -1,0 +1,1 @@
+Link to Metabase Dashboards: http://ec2-3-76-46-201.eu-central-1.compute.amazonaws.com/dashboard/1-products

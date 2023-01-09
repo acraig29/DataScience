@@ -1,0 +1,36 @@
+
+
+################Connection Detail for Project 5###########################
+##################################################################################
+
+
+
+ #####connection detaild for Amazon EC2 Instance ##################
+ 
+instance details:
+name: sp_dashboard
+InstanceID : i-0a7d61b1830e358be
+
+Public DNS IP4:  ec2-3-76-46-201.eu-central-1.compute.amazonaws.com
+VPC ID: vpc-092faf7eff8e61a27
+
+connect to my EC2  instance with:
+ssh -i  C:/Users/lisbo/.ssh/aws_key.pem ubuntu@ec2-52-59-239-87.eu-central-1.compute.amazonaws.com
+
+
+
+
+ ###################connect to Remote RDS AMazon Northwind Postgres Database #############
+db identifier: spiced-pgdb
+vpc: vpc-092faf7eff8e61a27
+Endpoint: spiced-pgdb.ciltduvpvqxy.eu-central-1.rds.amazonaws.com
+port: 5432
+
+connect to remote RDS databe
+ psql -h  spiced-pgdb.ciltduvpvqxy.eu-central-1.rds.amazonaws.com -U postgres -p 5432
+ 
+ 
+ ###################connect to Local Northwind Postgres Database
+ psql -U postgres northwind
+ 
+ 

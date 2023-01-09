@@ -1,0 +1,12 @@
+
+
+
+
+
+####extract database dump from local postgres into sql file
+winpty pg_dump -U postgres -d northwind -f mydb_5.sql
+
+
+
+####Load sql file database into remote RDS amaon postgres database
+psql -f mydb_5.sql -h spiced-pgdb.ciltduvpvqxy.eu-central-1.rds.amazonaws.com -U postgres -p 5432 -d northwind

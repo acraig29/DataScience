@@ -1,0 +1,33 @@
+﻿
+
+#############NOTE stopping and starting yout EC2 instance creates a new host name addres each time#
+####################
+
+connect to instance with:
+ssh -i ∼/.shh/aws_key.pem ubuntu@<hostname>
+
+
+instance details:
+name: sp_dashboard
+InstanceID : i-0a7d61b1830e358be
+
+Public DNS IP4:  ec2-3-76-46-201.eu-central-1.compute.amazonaws.com
+VPC ID: vpc-092faf7eff8e61a27
+
+connect to my EC2  instance with:
+ssh -i  C:/Users/lisbo/.ssh/aws_key.pem ubuntu@ec2-52-59-239-87.eu-central-1.compute.amazonaws.com
+
+
+ssh -i  C:/Users/lisbo/.ssh/aws_key.pem ubuntu@ec2-52-59-239-87.eu-central-1.compute.amazonaws.com
+
+                    ec2-52-59-239-87.eu-central-1.compute.amazonaws.com
+		   ec2-52-59-170-76.eu-central-1.compute.amazonaws.com
+ssh -i  C:/Users/lisbo/.ssh/aws_key.pem ubuntu@ec2-52-59-170-76.eu-central-1.compute.amazonaws.com
+
+
+#############NOTE stopping and starting yout EC2 instance creates a new host name addres each time, remember to copy
+pase the new Public DNS IP4: address each time when connecting #
+####################
+
+
+ 

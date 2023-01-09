@@ -1,0 +1,139 @@
+--Projec 5 Dashboard Queries for the northwind database
+
+--CREATE VIEW vista AS SELECT 'Hello World';
+
+--1.Get the names and the quantities in stock for each product.
+CREATE VIEW Proucts_1 AS 
+SELECT Distinct productid,productname,unitsinstock,supplierid,categoryid
+FROM public.products
+ORDER BY unitsinstock;
+
+
+--2.Get a list of current products (Product ID and name).
+CREATE VIEW Proucts_2 AS
+SELECT Distinct productid,productname,supplierid,categoryid
+FROM public.products
+ORDER BY productname ASC;
+
+
+--3.Get a list of the most and least expensive products (name and unit price).
+CREATE VIEW Proucts_3 AS
+SELECT productid,productname, unitprice,supplierid,categoryid
+FROM public.products
+ORDER BY productname ASC;
+
+--4.Get products that cost less than $20.
+CREATE VIEW Proucts_4 AS
+SELECT Distinct productid,productname, unitprice ,supplierid,categoryid
+FROM public.products
+Where unitprice < 20
+ORDER BY unitprice DESC;
+
+
+--5.Get products that cost between $15 and $25.
+CREATE VIEW Proucts_5 AS
+SELECT Distinct productid,productname, unitprice,supplierid,categoryid
+FROM public.products
+Where  unitprice BETWEEN 15 AND 25
+ORDER BY unitprice DESC;
+
+--6.Get products above average price.
+
+--Select AVG(unitprice) FROM public.products
+CREATE VIEW Proucts_6 AS
+SELECT Distinct productid,productname, unitprice,supplierid,categoryid
+FROM public.products
+Where  unitprice > (Select AVG(unitprice) FROM public.products)
+ORDER BY unitprice DESC;
+
+
+--7.Find the ten most expensive products.
+CREATE VIEW Proucts_7 AS
+SELECT Distinct productid,productname, unitprice,supplierid,categoryid,
+DENSE_RANK() OVER ( ORDER BY unitprice DESC) as rank
+FROM public.products
+ORDER BY unitprice DESC fetch first 10 rows only;
+
+
+
+--8.Get a list of discontinued products (Product ID and name).
+CREATE VIEW Proucts_8 AS
+SELECT  productid,productname,supplierid,categoryid
+FROM public.products
+WHERE discontinued = 1
+ORDER BY productname ASC;
+
+
+--9.Count current and discontinued products.
+CREATE VIEW Proucts_9 AS
+select Discontinued_Count, Current_Count
+  from (SELECT  1 as Join_ID, COUNT(productid) as Discontinued_Count
+FROM public.products
+WHERE discontinued = 1) dis
+inner join (SELECT  1 as Join_ID, COUNT(productid) as Current_Count
+FROM public.products
+WHERE discontinued = 0) cur
+  on (dis.Join_ID = cur.Join_ID );
+  
+--10.Find products with less units in stock than the quantity on order.
+CREATE VIEW Proucts_10 AS
+SELECT  productid,productname,unitsinstock,  unitsonorder,supplierid,categoryid
+FROM public.products
+WHERE unitsinstock  < unitsonorder
+ORDER BY productname ASC;
+
+--11.Find the customer who had the highest order amount
+CREATE VIEW Cust_Orders_11 AS
+SELECT Max(Amount) as OrderAmount,customerid ,customername FROM (
+SELECT cust.customerid ,cust.customername, ord.orderid, ord_d.orderdetailid,
+ord_d.productid,ord_d.unitprice,ord_d.quantity,ord_d.discount,
+(ord_d.unitprice * ord_d.quantity)  - ((ord_d.unitprice * ord_d.quantity )* ord_d.discount )
+as Amount
+FROM  public.customers  cust  
+INNER JOIN public.orders ord on cust.customerid = ord.customerid
+INNER JOIN public.orderdetails ord_d on ord.orderid = ord_d.orderid
+ORDER BY Amount DESC fetch first 1 rows only
+	) as data
+GROUP BY customerid ,customername;
+
+
+--12.Get orders for a given employee and the according customer
+--Entre Customer id string in here
+--set session my.vars.id = 'HANAR';
+--select customerid
+--from public.customers
+--where customerid = current_setting('my.vars.id')::varchar(40);
+
+CREATE VIEW Cust_Orders_12 AS
+SELECT cust.customerid ,cust.customername, ord.orderid, ord_d.orderdetailid,
+ord_d.productid,ord_d.unitprice,ord_d.quantity,ord_d.discount,
+(ord_d.unitprice * ord_d.quantity)  - ((ord_d.unitprice * ord_d.quantity )* ord_d.discount )
+as Amount
+FROM  public.customers  cust  
+INNER JOIN public.orders ord on cust.customerid = ord.customerid
+INNER JOIN public.orderdetails ord_d on ord.orderid = ord_d.orderid
+--WHERE cust.customerid = :foo
+ORDER BY Amount DESC
+;
+
+
+--13.Find the hiring age of each employee based on a given customer
+--Entre Employee id 1-9 in here
+--set session my2.vars.id = 'HANAR';
+--select customerid
+--from public.customers
+--where customerid = current_setting('my2.vars.id')::varchar(40);
+
+
+CREATE VIEW Cust_Employees_13 AS
+SELECT cust.customerid ,cust.customername, ord.orderid,
+emp.employeeid,title, firstname, lastname, hiredate,birthdate,
+DATE_PART('year', hiredate) - DATE_PART('year', birthdate) as HireAge
+
+FROM  public.customers  cust  
+INNER JOIN public.orders ord on cust.customerid = ord.customerid
+INNER JOIN public.employees emp  on ord.employeeid = emp.employeeid 
+--WHERE cust.customerid = current_setting('my2.vars.id')::varchar(40);
+--ORDER BY Amount DESC fetch first 1 rows only;
+
+--Select * from public.employees ;

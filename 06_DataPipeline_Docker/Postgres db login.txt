@@ -1,0 +1,7 @@
+psql -U postgres -h localhost -p 5555 sentiments
+
+
+SELECT * FROM "tweets.text";
+
+
+SELECT * FROM "tweets.sentiment";
